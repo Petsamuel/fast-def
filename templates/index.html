@@ -13,6 +13,14 @@
       href="{{ url_for('static', path='./static/tailwind.css') }}"
       rel="stylesheet"
     />
+    <script src="{{ url_for('static', path='./static/index.js') }}"></script>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      defer
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>My FastAPI App</title>
   </head>
   <body class="text-center bg-gray-900">
@@ -21,19 +29,41 @@
     </h1>
 
     <section
-      class="flex md:flex-row flex-col mx-16 justify-between mt-[20vh] lg:mt-0"
+      class="flex md:flex-row flex-col justify-between mt-[20vh] lg:mt-0"
     >
       <div
-        class="flex flex-wrap lg:mt-10 -mt-24 md:mt-0 w-full md:w-6/12 h-full"
+        class="flex flex-col w-full mx-16 h-full lg:mt-10 md:mt-0 md:w-6/12 flex-wrap"
       >
-        <label
-          class="text-gray-400 text-base font-bold leading-tight tracking-normal mb-2"
-          >Enter Word</label
+        <form
+          action="/message"
+          method="POST"
+          class="flex flex-col content-start"
         >
-        <input
-          type="text"
-          class="text-amber-900 focus:outline-none border-gray-900 focus:border-amber-100 bg-[#FCD08F] placeholder:text-amber-900/50 font-normal w-full h-14 flex items-center pl-3 text-xl rounded-lg shadow-xl transition-all ease-in-out focus:shadow-amber-300/10 border-2"
-        />
+          <label
+            class="text-gray-400 text-base font-bold leading-tight tracking-normal mb-2"
+            >Enter Word</label
+          >
+          <div class="flex w-full pb-4 pt-2 gap-2">
+            <input
+              type="text"
+              name="text"
+              autocomplete="off"
+              required
+              placeholder="Enter a word to search"
+              class="text-amber-900 focus:outline-none border-gray-900 focus:border-amber-100 bg-[#FCD08F] placeholder:text-amber-900/50 font-normal w-full h-14 flex items-center pl-3 text-xl rounded-lg shadow-xl transition-all ease-in-out focus:shadow-amber-300/10 border-2"
+            />
+            <button
+              class="p-2 px-4 text-xl bg-green-200 text-green-900 rounded-md hover:bg-emerald-200 shadow-xl hover:shadow-emerald-200/10 hover:scale-[0.98] active:scale-95 ease-in-out transition-all ring-green-200/40"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+        <div
+          class="response text-3xl mt-8 rounded-full bg-fuchsia-200 ring-2 ring-fuchsia-300/50 opacity-75 hover:opacity-95 transition-all ease-in-out p-4 active:scale-95"
+        >
+          <div class="" id="copyButton">{{converted_text}}</div>
+        </div>
       </div>
       <div
         class="flex flex-wrap lg:mt-10 mt-[100%] md:mt-0 w-full md:w-6/12 h-full justify-items-end"
