@@ -1,42 +1,42 @@
-from pydantic import BaseModel
-from typing import Optional
-from fastapi import FastAPI, Request, Form, HTTPException,File, UploadFile
+# from pydantic import BaseModel
+from fastapi import FastAPI, Request, HTTPException, Form
 from fastapi.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from docx2pdf import convert
+import requests
 
-
-templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
-
+templates = Jinja2Templates(directory="templates")
 app.mount("/templates/static", StaticFiles(directory="templates"), name="static")
 
+api_url = "http://api.dictionaryapi.dev/api/v2/entries/en/"
 
-class UnicodeConversionRequest(BaseModel):
-    emoji_text: str
-    
-    
-@app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@app.post("/convert")
-async def convert_word_to_pdf(file: UploadFile):
-    # Check if the uploaded file has a valid .docx extension
-    if file.filename.endswith('.docx'):
-        # Save the uploaded file to a temporary location
-        with open(file.filename, "wb") as f:
-            f.write(file.file.read())
-
-        # Convert the Word document to PDF
-        convert(file.filename)
-
-        # Return the PDF file
-        pdf_filename = file.filename.replace('.docx', '.pdf')
-        return {"message": "Conversion successful", "pdf_filename": pdf_filename}
+def get_definition(word: str):
+    response = requests.get(api_url + word)
+    if response.status_code == 200:
+        return response.json()
     else:
-        return {"error": "Invalid file format. Please upload a .docx file."}
+        return {"error": "Word not found or API request failed"}
 
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+    
+@app.get("/word/{word}", response_class=HTMLResponse)
+async def word(request: Request, word: str):
+    if word == "":
+        return templates.TemplateResponse("error.html", {"request": request, "error": "Word is required"})
+    else:
+        data = get_definition(word)
+        return templates.TemplateResponse("index.html", {"request": request, "data": data})
+
+@app.post("/word", response_class=HTMLResponse)
+async def word(request: Request, word: str = Form(...)):
+    data = get_definition(word)
+    return templates.TemplateResponse("index.html", {"request": request, "data": data})
+
+
+
+    
 

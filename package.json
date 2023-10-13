@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "build": "npx tailwindcss -i templates/static/input.css -o templates/static/tailwind.css --watch",
+    "start": "uvicorn main:app --reload "
   }
 }

@@ -3,42 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Poppins:wght@500&display=swap"
-      rel="stylesheet"
-    />
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Open+Sans:wght@500&family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link
       href="{{ url_for('static', path='./static/tailwind.css') }}"
       rel="stylesheet"
     />
     <script src="{{ url_for('static', path='./static/index.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
     <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
       defer
     ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>My FastAPI App</title>
   </head>
-  <body class="text-center bg-gray-900">
-    <h1 class="mt-8 text-white text-4xl" style="font-family: Poppins">
-      Hello from FastAPI!
+  <body class="bg-gray-900">
+    <div class="flex justify-between ">
+      <h1 class="mt-8 text-white text-4xl font-['Alex Brush']" style="font-family: 'Alex Brush', cursive;">
+      What is ?!
     </h1>
+    <div>2</div>
+    </div>
+    
 
     <section
-      class="flex md:flex-row flex-col justify-between mt-[20vh] lg:mt-0"
+      class="flex md:flex-row flex-col justify-between mt-[10vh] lg:mt-0 mx-3 gap-6"
     >
       <div
-        class="flex flex-col w-full mx-16 h-full lg:mt-10 md:mt-0 md:w-6/12 flex-wrap"
+        class="flex flex-col w-full h-full lg:mt-10 md:mt-0 md:w-6/12 flex-wrap"
       >
-        <form
-          action="/message"
-          method="POST"
-          class="flex flex-col content-start"
-        >
+        <form action="/word" method="POST" class="flex flex-col content-start">
           <label
             class="text-gray-400 text-base font-bold leading-tight tracking-normal mb-2"
             >Enter Word</label
@@ -46,7 +44,7 @@
           <div class="flex w-full pb-4 pt-2 gap-2">
             <input
               type="text"
-              name="text"
+              name="word"
               autocomplete="off"
               required
               placeholder="Enter a word to search"
@@ -59,26 +57,76 @@
             </button>
           </div>
         </form>
-        <div
-          class="response text-3xl mt-8 rounded-full bg-fuchsia-200 ring-2 ring-fuchsia-300/50 opacity-75 hover:opacity-95 transition-all ease-in-out p-4 active:scale-95"
-        >
-          <div class="" id="copyButton">{{converted_text}}</div>
+        <!--workspace-->
+        <div class="py-4 gap-2 mx-4">
+          {% if data %}
+          <div class="w-[50vw]">
+            {% for item in data %}
+            <div
+              class="my-4 gap-4 w-full sm:w-96 rounded-md p-6 relative z-10 flex flex-col sm:gap-4 sm:saturate-0 group-hover:saturate-100 transition-all ease-in-out"
+            >
+              <img
+                src="https://ytmp.itsvg.in/PicsArt_11-13-11.55.52.png"
+                alt=""
+                class="w-14 h-14"
+              />
+              <p
+                class="text-xl font-semibold mt-4 text-zinc-300 tracking-wider uppercase group-hover:hidden"
+              >
+                {{ item.word }}: {{item.meanings[0].partOfSpeech}}
+              </p>
+              <p class="text-sm text-zinc-400">
+                {{ item.meanings[0].definitions[0].definition }}
+              </p>
+            </div>
+            {% endfor %} {% else %}
+            <div
+              class=""
+            >
+              <div
+                class=" w-full ring-2 rounded-2xl p-6 ring-green-900zinc-700 relative z-10 flex flex-col gap-2 sm:gap-4 sm:saturate-0 group-hover:saturate-100 transition-all ease-in-out"
+              >
+               <div class="w-10 h-14">W</div>
+                <p
+                  class="text-xl font-semibold mt-4 lg:text-[#FCD08F] text-[#FCD08F] uppercase"
+                >
+                  WORD OF THE DAY - Test Your MIND and BODY
+                </p>
+                <p class="text-sm text-zinc-400 pb-7">
+                  VQ is Low level sentimental analysis to test your Mind and
+                  Brain in less than 5 minutes.
+                </p>
+              </div>
+              
+
+            {% endif %}
+          </div>
         </div>
+        <!--endworkspace-->
       </div>
       <div
-        class="flex flex-wrap lg:mt-10 mt-[100%] md:mt-0 w-full md:w-6/12 h-full justify-items-end"
+        class="flex  lg:mt-32 md:mt-0 w-full md:w-6/12 h-full  mx-5"
+        style="place-self:center"
       >
-        <img
-          src="https://visitcount.itsvg.in/diamonds.png"
-          class="aspect-square select-none pointer-events-none w-3/4"
-          alt=""
-          draggable="false"
-        />
+      <div class="flex items-center gap-2 content-center ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#FCD08F" class="w-1/2" viewBox="0 0 16 16">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg><div>
+        </div>
+      <div class="flex flex-col ">
+        <p class="text-3xl sm:text-4xl md:text-5xl font-medium text-[#FCD08F] font-Poppins">
+          We're Open Source</p>
+        <div class="text-sm text-gray-400 py-4">Yes you heard right, this website is open source and you can find code of this website on GitHub. You can request a feature, contribute to project by adding feedbacks and mentioning bugs if they exist. </div>
+      </div>
+      </div>
+       
       </div>
     </section>
 
-    <footer class="text-center text-white" style="font-family: sans-serif">
-      This is a simple HTML template.
+    <footer
+      class="text-center text-white pt-10"
+      style="font-family: sans-serif"
+    >
+      <p> &copy; 2023</p>
     </footer>
   </body>
 </html>
