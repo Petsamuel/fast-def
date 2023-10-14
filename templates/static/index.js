@@ -7,10 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-var today = new Date();
+$(document).click(function () {
+  $("#toggle").effect("shake");
+});
 
-// Format the date as needed
-var formattedDate = today.getFullYear();
+$("#notification").fadeIn();
 
-// Display the date using jQuery
-$("#dateDisplay").text("Today's Date: " + formattedDate);
+    // Automatically close the notification after 5 seconds (5000 milliseconds)
+    setTimeout(function () {
+      $("#notification").fadeOut();
+    }, 5000);

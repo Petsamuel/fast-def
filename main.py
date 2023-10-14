@@ -3,16 +3,21 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from starlette.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/templates/static", StaticFiles(directory="templates"), name="static")
 
-api_url = "http://api.dictionaryapi.dev/api/v2/entries/en/"
+URL = os.getenv("ApiUrl")
 
 def get_definition(word: str):
     try:
-        response = requests.get(api_url + word.lower())  # Convert word to lowercase
+        response = requests.get(URL + word.lower())  # Convert word to lowercase
         response.raise_for_status()  # Raise an exception if the response status is not 2xx
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -25,7 +30,8 @@ async def root(request: Request):
     data = get_definition(default_word)
     
     if data is None:
-        raise HTTPException(status_code=404, detail="Word not found or API request failed")
+        error_message = "Word not found or API request failed"
+        return templates.TemplateResponse("index.html", {"request": request, "error_message": error_message})
     
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
     
@@ -37,7 +43,8 @@ async def word(request: Request, word: str):
     data = get_definition(word)
     
     if data is None:
-        return RedirectResponse(url="/", status_code=302)  # Redirect to the home page
+        error_message = "Word not found or API request failed"
+        return templates.TemplateResponse("index.html", {"request": request, "error_message": error_message})
     
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
 
@@ -46,7 +53,8 @@ async def word(request: Request, word: str = Form(...)):
     data = get_definition(word)
     
     if data is None:
-        return RedirectResponse(url="/", status_code=302)  # Redirect to the home page
+        error_message = "Word not found or API request failed"
+        return templates.TemplateResponse("index.html", {"request": request, "error_message": error_message})
     
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
 

@@ -14,14 +14,14 @@
     />
     <script src="{{ url_for('static', path='./static/index.js') }}" ></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <title>What is ?!</title>
+    <title class="min-w-full">What is ?!</title>
   </head>
   <body class="bg-[#18181b]">
     <header class="flex justify-around items-center">
-      <div class="mt-8 text-white text-4xl font-[Satisfy] font-semibold py-6" style="font-family: Satisfy ;">
+      <div class="mt-8 text-white text-4xl font-[Satisfy] font-semibold py-6 cursor-pointer" style="font-family: Satisfy ; cursive">
       What is ?!
       </div>
     
@@ -121,22 +121,10 @@
               {% endfor %}
             </ul>
           </ul>
-          
-          
-              {% if item.phonetics and item.phonetics|length > 0 or tem.phonetics[0].license.name %}
-              <li class="font-serif text-gray-400 text-xs absolute bottom-0 mt-4">
-                {% if item.phonetics[0].license %}
-                license:<a href="{{item.phonetics[0].license.url}}">{{ item.phonetics[0].license.name}}</a>
-                  {%else %}
-                  
-                  {% endif %}
-                  {% endif %}
-
-              </li>
 
             </ul>
             {% endfor %} {% else %}
-            <div class="animate-pulse flex space-x-4">
+            <div class="animate-pulse flex space-x-4 my-2 gap-2 w-full sm:w-96 rounded-md p-6 relative z-10  flex-col sm:gap-4 transition-all ease-in-out shadow-md bg-gray-900">
     <div class="rounded-full bg-slate-700 h-10 w-10"></div>
     <div class="flex-1 space-y-6 py-1">
       <div class="h-2 bg-slate-700 rounded"></div>
@@ -150,7 +138,17 @@
     </div>
   </div>
 </div>
-  
+<!--notification-->
+<div class="absolute lg:top-[4vh] md:top-[10vh] top-[11vh] flex items-center p-4 mb-4 bg-rose-200 text-rose-900 lg:text-lg md:text-md text-sm font-bold rounded-md ring-2 ring-rose-300/50 hover:bg-rose-300 transition-all ease-in-out" role="alert" id="notification">
+  <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+  <span class="sr-only">Error</span>
+  <div>
+    <span class="font-medium font-[Poppins]">Failed Request!</span> {{error_message}}
+  </div>
+</div>
+
 
             {% endif %}
           </div>
@@ -179,25 +177,6 @@
        
       </div>
     </section>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const audioPlayer = document.getElementById("listen");
-  const playIcon = document.querySelector(".material-symbols-outlined");
-
-  playIcon.addEventListener("click", function () {
-    audioPlayer.play();
-  });
-});
-
-var today = new Date();
-
-// Format the date as needed
-var formattedDate = today.getFullYear();
-
-// Display the date using jQuery
-$("#dateDisplay").text("Today's Date: " + formattedDate);
-
-</script>
     <footer
       class="text-center text-white pt-10"
       style="font-family: sans-serif"
