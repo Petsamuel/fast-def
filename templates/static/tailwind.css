@@ -1290,6 +1290,10 @@ video {
     margin-top: 8rem;
   }
 
+  .lg\:block{
+    display: block;
+  }
+
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
