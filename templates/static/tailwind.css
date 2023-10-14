@@ -704,6 +704,30 @@ video {
   width: max-content;
 }
 
+.w-\[\]{
+  width: ;
+}
+
+.w-\[80\%\]{
+  width: 80%;
+}
+
+.w-\[60vw\]{
+  width: 60vw;
+}
+
+.w-\[40vw\]{
+  width: 40vw;
+}
+
+.w-\[70\%\]{
+  width: 70%;
+}
+
+.w-\[55\%\]{
+  width: 55%;
+}
+
 .min-w-full{
   min-width: 100%;
 }
@@ -957,6 +981,10 @@ video {
 
 .text-justify{
   text-align: justify;
+}
+
+.align-middle{
+  vertical-align: middle;
 }
 
 .font-\[Poppins\]{
