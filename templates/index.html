@@ -21,7 +21,7 @@
   </head>
   <body class="bg-[#18181b]">
     <header class="flex justify-around items-center">
-      <div class="mt-8 text-white text-4xl font-[Satisfy] font-semibold py-6 cursor-pointer" style="font-family: Satisfy ; cursive">
+      <div class="mt-8 text-white text-4xl font-[Satisfy] font-semibold py-6 cursor-pointer">
       What is ?!
       </div>
     
@@ -32,13 +32,10 @@
       class=" flex flex-col justify-center mt-[5vh] lg:mt-0 mx-4 gap-6"
     >
       <div
-        class=""
+        
       >
         <form action="/word" method="POST" class="flex flex-col content-start">
-         <!-- <label
-            class="text-gray-400 text-base font-bold leading-tight tracking-normal mb-2"
-            >Enter Word</label 
-          >-->
+
           <div class="flex w-full pb-4 pt-2 gap-2">
             <input
               type="text"
@@ -104,7 +101,7 @@
               {% for definition in item.meanings[0].definitions %}
               {% if definition.synonyms and definition.synonyms|length > 0 %}
                   <span class="text-sm font-semibold text-emerald-200">Synonyms:</span>
-                  <ul class="">
+                  <ul>
                   {% for definition in item.meanings[0].definitions %}
                         <ul>
                             {% for synonym in definition.synonyms %}
@@ -134,11 +131,14 @@
               {% endfor %}
             </ul>
             {% endif %}
+            
               {% endfor %}
           </ul>
             {% endif %}
             </ul>
-            {% endfor %} {% else %}
+            {% endfor %}
+             
+            {% else %}
             <div class="animate-pulse flex space-x-4 my-2 gap-2 w-full sm:w-96 rounded-md p-6 relative z-10  flex-col sm:gap-4 transition-all ease-in-out shadow-md bg-gray-900">
     <div class="rounded-full bg-slate-700 h-10 w-10"></div>
     <div class="flex-1 space-y-6 py-1">
@@ -181,8 +181,8 @@
         <!--endworkspace-->
       </div>
       <div
-        class="flex  lg:mt-32 md:mt-0 w-full md:w-6/12 h-full  mx-5"
-        style="place-self:center"
+        class="flex  lg:mt-32 md:mt-0 w-full md:w-6/12 h-full  mx-5 place-self-center"
+       
       >
       <div class="flex items-center gap-4 content-center ">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#FCD08F" class="w-1/2 " viewBox="0 0 16 16">
@@ -203,8 +203,7 @@
       </div>
     </section>
     <footer
-      class="text-center text-white pt-10"
-      style="font-family: sans-serif"
+      class="text-center text-white pt-10 font-sans"
     >
     <div class="flex flex-col  space-x-2 items-center content-center">
       <div class="flex space-x-2 items-center">
