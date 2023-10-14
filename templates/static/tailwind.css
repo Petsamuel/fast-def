@@ -599,6 +599,41 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-10{
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.my-12{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.my-14{
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.my-16{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mb-1{
   margin-bottom: 0.25rem;
 }
@@ -637,6 +672,10 @@ video {
 
 .mt-\[5vh\]{
   margin-top: 5vh;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
 }
 
 .inline{
@@ -726,6 +765,10 @@ video {
 
 .w-\[55\%\]{
   width: 55%;
+}
+
+.w-6\/12{
+  width: 50%;
 }
 
 .min-w-full{
@@ -929,6 +972,10 @@ video {
   padding: 1.5rem;
 }
 
+.p-\[\]{
+  padding: ;
+}
+
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -973,6 +1020,10 @@ video {
 
 .pt-2{
   padding-top: 0.5rem;
+}
+
+.pt-14{
+  padding-top: 3.5rem;
 }
 
 .text-center{
@@ -1101,6 +1152,20 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-green-300{
+  --tw-text-opacity: 1;
+  color: rgb(134 239 172 / var(--tw-text-opacity));
+}
+
+.text-\[\]{
+  color: ;
 }
 
 .shadow{
@@ -1287,6 +1352,11 @@ video {
     top: 10vh;
   }
 
+  .md\:my-0{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .md\:mt-0{
     margin-top: 0px;
   }
@@ -1299,9 +1369,22 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
+  .md\:pr-10{
+    padding-right: 2.5rem;
+  }
+
   .md\:text-5xl{
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .md\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -1322,6 +1405,10 @@ video {
     display: block;
   }
 
+  .lg\:w-full{
+    width: 100%;
+  }
+
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1330,8 +1417,19 @@ video {
     flex-direction: row;
   }
 
+  .lg\:p-4{
+    padding: 1rem;
+  }
+
   .lg\:text-lg{
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 1536px){
+  .\32xl\:text-xl{
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }

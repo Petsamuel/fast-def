@@ -26,7 +26,7 @@ def get_definition(word: str):
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
-    default_word = "example"  # Set a default word to fetch data on load
+    default_word = "rose"  # Set a default word to fetch data on load
     data = get_definition(default_word)
     
     if data is None:
