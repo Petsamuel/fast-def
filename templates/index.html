@@ -148,6 +148,16 @@
     <span class="font-medium font-[Poppins]">Failed Request!</span> {{error_message}}
   </div>
 </div>
+<script>
+     var $notification = $("#notification");
+    $notification.effect( "shake" );
+    $notification.click(function () {
+        $notification.toggle( "blind" ) // blind
+    });
+    setTimeout(function () {
+        $notification.css("top", "-100px"); // Slide out
+    }, 5000);
+</script>
 
 
             {% endif %}
