@@ -742,6 +742,14 @@ video {
   flex-direction: column;
 }
 
+.place-items-end{
+  place-items: end;
+}
+
+.place-items-center{
+  place-items: center;
+}
+
 .content-center{
   align-content: center;
 }
@@ -760,6 +768,10 @@ video {
 
 .justify-around{
   justify-content: space-around;
+}
+
+.justify-evenly{
+  justify-content: space-evenly;
 }
 
 .gap-2{
@@ -941,6 +953,10 @@ video {
 
 .text-center{
   text-align: center;
+}
+
+.text-justify{
+  text-align: justify;
 }
 
 .font-\[Poppins\]{
