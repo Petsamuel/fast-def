@@ -82,6 +82,8 @@
                 </audio>
               </span>
             </span>
+            {%else%}
+            {{ item.word }}:
             {% endif %}
               </div>
               <ul class="mt-2 ml-6 text-xl text-gray-400">
@@ -96,34 +98,37 @@
                    <span class="text-sm font-semibold text-emerald-200 ">Examples:{{ item.meanings[0].definitions[0].examples }}</span>
               {% endif %}
               </li>
-            
-             <ul class="mt-2 ml-6 text-base text-gray-400">
-            <span class="text-sm font-semibold text-emerald-200">Synonyms:</span>
-            <ul class="">
-             {% for definition in item.meanings[0].definitions %}
-        <ul>
-            {% for synonym in definition.synonyms %}
-                <li class="synonym">{{ synonym }}</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-            </ul>
-          </ul>
-       
-         
-           <ul class="mt-2 ml-6 text-base text-gray-400">
-            <span class="text-sm font-semibold text-emerald-200">Antonyms:</span>
-            <ul>
-              {% for definition in item.meanings[0].definitions %}
-                {% for antonym in definition.antonyms %}
-                  <li>{{ antonym }}</li>
-                {% endfor %}
-              {% endfor %}
-            </ul>
-          </ul>
+              {% if item.meanings[0].definitions|length > 0 %}
+                  <ul class="mt-2 ml-6 text-base text-gray-400">
+                      {% for definition in item.meanings[0].definitions %}
+                          {% if definition.synonyms and definition.synonyms|length > 0 %}
+                              <span class="text-sm font-semibold text-emerald-200">Synonyms:</span>
+                              <ul class="">
+                                  <ul>
+                                      {% for synonym in definition.synonyms %}
+                                          <li class="synonym">{{ synonym }}</li>
+                                      {% endfor %}
+                                  </ul>
+                              </ul>
+                          {% endif %}
+                          {% if definition.antonyms and definition.antonyms|length > 0 %}
+                              <span class="text-sm font-semibold text-red-200">Antonyms:</span>
+                              <ul class="">
+                                  <ul>
+                                      {% for antonym in definition.antonyms %}
+                                          <li class="antonym">{{ antonym }}</li>
+                                      {% endfor %}
+                                  </ul>
+                              </ul>
+                          {% endif %}
+                      {% endfor %}
+                  </ul>
+              {% endif %}
 
-            </ul>
-            {% endfor %} {% else %}
+
+         
+           
+            {% endfor %}{% else %}
             <div class="animate-pulse flex space-x-4 my-2 gap-2 w-full sm:w-96 rounded-md p-6 relative z-10  flex-col sm:gap-4 transition-all ease-in-out shadow-md bg-gray-900">
     <div class="rounded-full bg-slate-700 h-10 w-10"></div>
     <div class="flex-1 space-y-6 py-1">
