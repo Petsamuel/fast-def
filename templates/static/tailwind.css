@@ -548,10 +548,6 @@ video {
   position: relative;
 }
 
-.bottom-3{
-  bottom: 0.75rem;
-}
-
 .bottom-0{
   bottom: 0px;
 }
@@ -624,8 +620,8 @@ video {
   margin-top: 2rem;
 }
 
-.mt-\[8vh\]{
-  margin-top: 8vh;
+.mt-\[5vh\]{
+  margin-top: 5vh;
 }
 
 .flex{
@@ -634,6 +630,10 @@ video {
 
 .grid{
   display: grid;
+}
+
+.list-item{
+  display: list-item;
 }
 
 .aspect-square{
@@ -656,10 +656,6 @@ video {
   width: 50%;
 }
 
-.w-10{
-  width: 2.5rem;
-}
-
 .w-4{
   width: 1rem;
 }
@@ -679,6 +675,14 @@ video {
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.list-decimal{
+  list-style-type: decimal;
+}
+
+.list-disc{
+  list-style-type: disc;
 }
 
 .flex-col{
@@ -709,12 +713,12 @@ video {
   gap: 0.5rem;
 }
 
-.gap-6{
-  gap: 1.5rem;
-}
-
 .gap-4{
   gap: 1rem;
+}
+
+.gap-6{
+  gap: 1.5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
@@ -845,6 +849,10 @@ video {
   padding-top: 0.5rem;
 }
 
+.pl-4{
+  padding-left: 1rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -859,6 +867,11 @@ video {
 
 .font-serif{
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl{
@@ -894,11 +907,6 @@ video {
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-bold{
